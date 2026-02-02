@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Al Salah Global Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      overflow-x: hidden !important;
+      box-sizing: border-box;
+    }
+    
+    body > div {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    section, nav, footer, div {
+      box-sizing: border-box;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .max-w-7xl {
+      box-sizing: border-box;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #0047AB 0%, #003d99 50%, #ad7d34 100%);
+    }
+    
+    .accent-glow {
+      box-shadow: 0 0 30px rgba(0, 71, 171, 0.3);
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      color: #0047AB;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #DAA520;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: #DAA520;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+      transform: translate(-50%, -50%);
+    }
+    
+    .cta-button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .feature-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 71, 171, 0.15);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+      opacity: 0;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+      opacity: 0;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
+      opacity: 0;
+    }
+    
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100%;
+      background: white;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease-in-out;
+      z-index: 1000;
+    }
+    
+    .mobile-sidebar.open {
+      right: 0;
+    }
+    
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      z-index: 999;
+    }
+    
+    .mobile-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-nav-link {
+      display: block;
+      padding: 16px 24px;
+      color: #0047AB;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .mobile-nav-link:hover {
+      background: #FFF8E7;
+      border-left-color: #DAA520;
+      color: #DAA520;
+    }
+    
+    .mobile-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      color: #0047AB;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+      width: 100%;
+      text-align: left;
+    }
+    
+    .mobile-dropdown-toggle:hover {
+      background: #FFF8E7;
+      border-left-color: #DAA520;
+      color: #DAA520;
+    }
+    
+    .mobile-dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #f9fafb;
+    }
+    
+    .mobile-dropdown-content.show {
+      max-height: 500px;
+    }
+    
+    .mobile-dropdown-item {
+      display: block;
+      padding: 12px 24px 12px 48px;
+      color: #0047AB;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      text-decoration: none;
+    }
+    
+    .mobile-dropdown-item:hover {
+      background: #FFF8E7;
+      border-left-color: #DAA520;
+      color: #DAA520;
+    }
+    
+    .mobile-dropdown-arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-dropdown-arrow.rotated {
+      transform: rotate(180deg);
+    }
+    
+    /* Track Record Hover Effect */
+    .track-record-item {
+      transition: all 0.3s ease;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    
+    .track-record-item:hover {
+      background: rgba(0, 71, 171, 0.05);
+      transform: translateX(8px);
+    }
+    
+    .track-record-item:hover span:first-child {
+      transform: scale(1.2);
+      display: inline-block;
+    }
+    
+    /* Dropdown styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 320px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+      margin-top: 8px;
+      padding: 8px;
+      pointer-events: none;
+    }
+    
+    .dropdown-menu.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    .dropdown-item {
+      display: block;
+      padding: 12px 16px;
+      color: #0047AB;
+      font-weight: 500;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      text-decoration: none;
+    }
+    
+    .dropdown-item:hover {
+      background: #FFF8E7;
+      color: #DAA520;
+      transform: translateX(4px);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="w-full h-full overflow-auto" style="background: white; max-width: 100%; overflow-x: hidden !important;"><!-- Mobile Overlay -->
+   <div class="mobile-overlay" id="mobileOverlay"></div><!-- Mobile Sidebar -->
+   <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+     <div class="flex items-center space-x-3">
+      
+      <div>
+       <div class="font-bold text-sm" style="color: #0047AB;">
+        Al Salah Global
+       </div>
+       <div class="text-xs font-medium" style="color: #4A5568;">
+        Services
+       </div>
+      </div>
+     </div><button id="closeSidebar" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /> <line x1="6" y1="6" x2="18" y2="18" />
+      </svg></button>
+    </div>
+    <nav class="py-4"><a href="index.html" class="mobile-nav-link">Home</a> <a href="about.html" class="mobile-nav-link">About Us</a> <!-- Product & Services Dropdown -->
+     <div><button class="mobile-dropdown-toggle" onclick="toggleMobileDropdown('mobileServicesDropdown')"> <span>Product &amp; Services</span>
+       <svg class="mobile-dropdown-arrow" id="mobileServicesArrow" width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+       </svg></button>
+      <div class="mobile-dropdown-content" id="mobileServicesDropdown"><a href="software-solutions.html" class="mobile-dropdown-item" onclick="closeSidebar()">ENTERPRISE SOFTWARE SOLUTIONS</a> <a href="hardware-engineering.html" class="mobile-dropdown-item" onclick="closeSidebar()">HARDWARE &amp; ENGINEERING SERVICES</a> <a href="technical-staffing.html" class="mobile-dropdown-item" onclick="closeSidebar()">TECHNICAL STAFFING &amp; WORKFORCE SOLUTIONS</a>
+      </div>
+     </div><a href="Industries.html" class="mobile-nav-link">Industries Overview</a> <a href="case study1.html" class="mobile-nav-link">Media</a> <a href="partners.html" class="mobile-nav-link">Partners</a> <a href="contact.html" class="mobile-nav-link">Contact Us</a>
+    </nav>
+   </div><!-- Navigation -->
+   <nav class="w-full bg-white border-b border-gray-100 sticky top-0 z-50" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+     <div class="flex justify-between items-center"><!-- Logo -->
+      <div class="flex items-center"> <img src="images/logo1.png" alt="Al Salah Global Services logo" loading="lazy" class="h-16 w-auto object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#0047AB'; this.alt='Al Salah Global Services';">
+      </div><!-- Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8"><a href="index.html" class="nav-link text-sm font-semibold">Home</a> <a href="about.html" class="nav-link text-sm font-semibold">About Us</a>
+       <div class="dropdown"><span class="nav-link text-sm font-semibold" style="cursor: pointer;" onclick="toggleDropdown(event, 'servicesDropdown')">Product &amp; Services</span>
+        <div class="dropdown-menu" id="servicesDropdown"><a href="software-solutions.html" class="dropdown-item">ENTERPRISE SOFTWARE SOLUTIONS</a> <a href="hardware-engineering.html" class="dropdown-item">HARDWARE &amp; ENGINEERING SERVICES</a> <a href="technical-staffing.html" class="dropdown-item">TECHNICAL STAFFING &amp; WORKFORCE SOLUTIONS</a>
+        </div>
+       </div><a href="Industries.html" class="nav-link text-sm font-semibold">Industries Overview</a> <a href="case study1.html" class="nav-link text-sm font-semibold">Media</a> <a href="partners.html" class="nav-link text-sm font-semibold">Partners</a> <a href="contact.html" class="nav-link text-sm font-semibold">Contact Us</a>
+      </div><!-- Mobile Menu Button --> <button id="openSidebar" class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" style="color: #0047AB;">
+       <svg width="28" height="28" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /> <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /> <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+       </svg></button>
+     </div>
+    </div>
+   </nav><!-- Enterprise Software Solutions Hero Section -->
+   <section class="hero-gradient w-full relative">
+    <div class="absolute inset-0" style="z-index: 0;"><img src="images/software solutions.jpg" alt="GCC region technology background" loading="lazy" class="w-full h-full object-cover" style="opacity: 0.90;" onerror="console.error('Image failed to load:', this.src); this.style.background='#0047AB'; this.alt='Background unavailable';">
+     <div class="absolute inset-0 w-full h-full" style="background: linear-gradient(135deg, #0047ab6e 0%, #003d997a 50%, #ad7d349e 100%);"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 py-24 md:py-32 relative" style="z-index: 1;">
+     <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-8">Enterprise Software Solutions</h1>
+      <p class="text-lg md:text-xl leading-relaxed mb-6 text-white">We design and deliver enterprise software solutions that support critical operations, regulatory compliance, and long-term scalability for GCC organisations.</p>
+      <p class="text-lg md:text-xl leading-relaxed text-white">Our software engagements are supported by dedicated technical professionals throughout the lifecycle.</p>
+     </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0">
+     
+    </div>
+   </section><!-- Capabilities and Delivery Model Section -->
+   <section class="w-full py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"><!-- Capabilities -->
+      <div>
+       <h2 class="text-3xl font-bold mb-8 text-center" style="color: #0047AB;">Capabilities</h2>
+       <div class="space-y-6">
+        <div class="capability-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&amp;h=600&amp;fit=crop" alt="Custom enterprise applications" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Application icon';">
+         </div>
+         <div class="p-6">
+          <h3 class="text-gray-800 text-xl font-bold">Custom enterprise applications</h3>
+         </div>
+        </div>
+        <div class="capability-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&amp;h=600&amp;fit=crop" alt="System modernisation" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Modernisation icon';">
+         </div>
+         <div class="p-6">
+          <h3 class="text-gray-800 text-xl font-bold">System modernisation</h3>
+         </div>
+        </div>
+        <div class="capability-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&amp;h=600&amp;fit=crop" alt="Platform integration" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Integration icon';">
+         </div>
+         <div class="p-6">
+          <h3 class="text-gray-800 text-xl font-bold">Platform integration</h3>
+         </div>
+        </div>
+        <div class="capability-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&amp;h=600&amp;fit=crop" alt="Workflow automation" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Automation icon';">
+         </div>
+         <div class="p-6">
+          <h3 class="text-gray-800 text-xl font-bold">Workflow automation</h3>
+         </div>
+        </div>
+        <div class="capability-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&amp;h=600&amp;fit=crop" alt="Secure data-driven systems" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Security icon';">
+         </div>
+         <div class="p-6">
+          <h3 class="text-gray-800 text-xl font-bold">Secure data-driven systems</h3>
+         </div>
+        </div>
+       </div>
+      </div><!-- Delivery Model -->
+      <div>
+       <h2 class="text-3xl font-bold mb-8 text-center" style="color: #0047AB;">Delivery Model</h2>
+       <div class="space-y-6">
+        <div class="delivery-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&amp;h=600&amp;fit=crop" alt="Requirement definition" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Planning icon';">
+         </div>
+         <div class="p-6">
+          <div class="text-sm font-bold mb-2" style="color: #0047AB;">
+           STEP 1
+          </div>
+          <h3 class="text-gray-800 text-xl font-bold">Requirement definition</h3>
+         </div>
+        </div>
+        <div class="delivery-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&amp;h=600&amp;fit=crop" alt="Development" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Development icon';">
+         </div>
+         <div class="p-6">
+          <div class="text-sm font-bold mb-2" style="color: #0047AB;">
+           STEP 2
+          </div>
+          <h3 class="text-gray-800 text-xl font-bold">Development</h3>
+         </div>
+        </div>
+        <div class="delivery-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&amp;h=600&amp;fit=crop" alt="Deployment" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Deployment icon';">
+         </div>
+         <div class="p-6">
+          <div class="text-sm font-bold mb-2" style="color: #0047AB;">
+           STEP 3
+          </div>
+          <h3 class="text-gray-800 text-xl font-bold">Deployment</h3>
+         </div>
+        </div>
+        <div class="delivery-box bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2">
+         <div class="w-full h-56 overflow-hidden"><img src="images/Ongoing support.jpg" alt="Ongoing support" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #0047AB 0%, #0056D6 100%)'; this.alt='Support icon';">
+         </div>
+         <div class="p-6">
+          <div class="text-sm font-bold mb-2" style="color: #0047AB;">
+           STEP 4
+          </div>
+          <h3 class="text-gray-800 text-xl font-bold">Ongoing support</h3>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="w-full py-12" style="background: #0047AB;">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center">
+      <div class="font-bold text-xl text-white mb-4">
+       Al Salah Global Services
+      </div>
+
+      <p class="text-blue-100 mb-6 max-w-4xl mx-auto leading-relaxed">Al Salah Global Services is a GCC-focused technology and engineering services company delivering enterprise software, hardware solutions, and technical staffing with an emphasis on execution reliability and long-term partnership.</p>
+      <div class="mb-6"><a href="careers.html" class="inline-block px-8 py-3 bg-white text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-blue-50 hover:transform hover:scale-105" style="color: #0047AB;"> Careers </a>
+      </div>
+      <div class="text-sm text-blue-200">
+       2024 Al Salah Global Services. All rights reserved.
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      background_color: "#0047AB",
+      surface_color: "#FFFFFF",
+      text_color: "#1A202C",
+      primary_action_color: "#FFFFFF",
+      secondary_action_color: "#0047AB",
+      font_family: "Poppins",
+      font_size: 16,
+      hero_headline: "Technology, Engineering & Talent Solutions for GCC Enterprises",
+      hero_subheadline: "Al Salah Global Services partners with government entities and enterprises across the Gulf to design, deploy, and support mission-critical software, hardware, and technical workforce solutions — delivered with regional expertise, operational discipline, and long-term reliability.",
+      cta_primary: "👉 Request a Consultation",
+      cta_secondary: "���� Talk to Our Team"
+    };
+
+    async function onConfigChange(config) {
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+      
+      // Apply background color to hero and footer sections
+      const heroSection = document.querySelector('.hero-gradient');
+      if (heroSection) {
+        heroSection.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor}ee 50%, ${bgColor}cc 100%)`;
+      }
+      
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.background = bgColor;
+      }
+      
+      // Apply surface color to nav and cards
+      const nav = document.querySelector('nav');
+      if (nav) nav.style.background = surfaceColor;
+      
+      // Apply font and content to hero headline
+      const heroHeadline = document.getElementById('hero-headline');
+      if (heroHeadline) {
+        heroHeadline.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+        heroHeadline.style.fontSize = `${baseFontSize * 3}px`;
+        heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+      }
+      
+      // Apply font and content to hero subheadline
+      const heroSubheadline = document.getElementById('hero-subheadline');
+      if (heroSubheadline) {
+        heroSubheadline.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+        heroSubheadline.style.fontSize = `${baseFontSize * 1.25}px`;
+        heroSubheadline.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+        heroSubheadline.style.color = 'rgba(255, 255, 255, 0.9)';
+      }
+      
+      // Apply content to CTA buttons
+      const ctaPrimary = document.getElementById('cta-primary');
+      if (ctaPrimary) {
+        ctaPrimary.textContent = config.cta_primary || defaultConfig.cta_primary;
+        ctaPrimary.style.background = primaryActionColor;
+        ctaPrimary.style.color = bgColor;
+        ctaPrimary.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+        ctaPrimary.style.fontSize = `${baseFontSize * 1.125}px`;
+      }
+      
+      const ctaSecondary = document.getElementById('cta-secondary');
+      if (ctaSecondary) {
+        ctaSecondary.textContent = config.cta_secondary || defaultConfig.cta_secondary;
+        ctaSecondary.style.borderColor = primaryActionColor;
+        ctaSecondary.style.color = primaryActionColor;
+        ctaSecondary.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+        ctaSecondary.style.fontSize = `${baseFontSize * 1.125}px`;
+      }
+      
+      // Apply font to all text elements
+      document.querySelectorAll('h1, h2, h3, p, button, div').forEach(el => {
+        el.style.fontFamily = `${customFont}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      });
+      
+      // Apply text color to paragraphs
+      document.querySelectorAll('p').forEach(el => {
+        if (!el.id || (el.id !== 'hero-subheadline')) {
+          el.style.color = textColor;
+        }
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              window.elementSdk.setConfig({ secondary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_headline", config.hero_headline || defaultConfig.hero_headline],
+        ["hero_subheadline", config.hero_subheadline || defaultConfig.hero_subheadline],
+        ["cta_primary", config.cta_primary || defaultConfig.cta_primary],
+        ["cta_secondary", config.cta_secondary || defaultConfig.cta_secondary]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+    
+    // Mobile Sidebar Functionality
+    const openSidebarBtn = document.getElementById('openSidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebar');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    
+    function openSidebar() {
+      mobileSidebar.classList.add('open');
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeSidebar() {
+      mobileSidebar.classList.remove('open');
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    openSidebarBtn.addEventListener('click', openSidebar);
+    closeSidebarBtn.addEventListener('click', closeSidebar);
+    mobileOverlay.addEventListener('click', closeSidebar);
+    
+    // Close sidebar when clicking on a navigation link
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+    
+    // Handle service button click (desktop)
+    function handleServiceClick(event, serviceId) {
+      event.stopPropagation();
+      
+      // Close all dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.classList.remove('show');
+      });
+      
+      // Show a temporary message or perform action
+      console.log('Service selected:', serviceId);
+      
+      // You can add custom logic here, such as:
+      // - Opening a modal
+      // - Navigating to a section
+      // - Showing service details
+      
+      // For now, let's scroll to the section if it exists
+      const element = document.getElementById(serviceId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    
+    // Handle service button click (mobile)
+    function handleMobileServiceClick(serviceId) {
+      closeSidebar();
+      
+      // Show a temporary message or perform action
+      console.log('Service selected:', serviceId);
+      
+      // For now, let's scroll to the section if it exists
+      const element = document.getElementById(serviceId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    
+    // Scroll to section function
+    function scrollToSection(sectionId) {
+      // Close all dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.classList.remove('show');
+      });
+      
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    
+    // Toggle dropdown on click
+    function toggleDropdown(event, dropdownId) {
+      event.preventDefault();
+      event.stopPropagation();
+      const dropdown = document.getElementById(dropdownId);
+      const isVisible = dropdown.classList.contains('show');
+      
+      // Close all other dropdowns first
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if (menu.id !== dropdownId) {
+          menu.classList.remove('show');
+        }
+      });
+      
+      if (isVisible) {
+        dropdown.classList.remove('show');
+      } else {
+        dropdown.classList.add('show');
+      }
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdowns = document.querySelectorAll('.dropdown-menu');
+      const isDropdownButton = event.target.closest('.dropdown span');
+      const isInsideDropdown = event.target.closest('.dropdown-menu');
+      
+      if (!isDropdownButton && !isInsideDropdown) {
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove('show');
+        });
+      }
+    });
+    
+    // Prevent dropdown from closing when clicking inside
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+    });
+    
+    // Scroll to industry function
+    function scrollToIndustry(industryId) {
+      // Close all dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.classList.remove('show');
+      });
+      
+      const element = document.getElementById(industryId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    
+    // Toggle mobile dropdown
+    function toggleMobileDropdown(dropdownId) {
+      const dropdown = document.getElementById(dropdownId);
+      const arrowId = dropdownId.replace('Dropdown', 'Arrow');
+      const arrow = document.getElementById(arrowId);
+      const isVisible = dropdown.classList.contains('show');
+      
+      // Close all other mobile dropdowns first
+      document.querySelectorAll('.mobile-dropdown-content').forEach(menu => {
+        if (menu.id !== dropdownId) {
+          menu.classList.remove('show');
+        }
+      });
+      
+      // Reset all arrows
+      document.querySelectorAll('.mobile-dropdown-arrow').forEach(arr => {
+        if (arr.id !== arrowId) {
+          arr.classList.remove('rotated');
+        }
+      });
+      
+      if (isVisible) {
+        dropdown.classList.remove('show');
+        if (arrow) arrow.classList.remove('rotated');
+      } else {
+        dropdown.classList.add('show');
+        if (arrow) arrow.classList.add('rotated');
+      }
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c4f9384e4de396c',t:'MTc2OTU5MzcyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
